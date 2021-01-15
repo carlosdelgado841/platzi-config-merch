@@ -1,0 +1,73 @@
+import React, { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import { PayPalButton  } from 'react-paypal-button'
+import AppContext from '../context/AppContext'
+import { handleSumTotal } from '../utils/index'
+
+import '../styles/components/Payment.css'
+
+function Payment() {
+  const history = useHistory();
+  const { state: { cart, buyer }, addNewOrder } = useContext(AppContext)
+
+  const paypalOptions = {
+    clientId: 'AQqvVshzgU08gSXjCsJ4ELUO76r7vvyHiDdyNZbh8rl8J2lYX3NeI8aRQJYobiZ4XKdlFMnvt-rPfqTy',
+    intent: 'capture',
+    currency: 'USD'
+  }
+
+  const buttonStyles = {
+    layout: 'vertical',
+    shape: 'rect'
+  }
+
+  const handlePaymentSuccess = (data) => {
+    console.log(data)
+    if (data.status === 'COMPLETED'){
+      const newOrder = {
+        buyer,
+        product: cart,
+        payment: data
+      }
+
+      addNewOrder(newOrder);
+      history.push("/checkout/success")
+    }
+  }
+
+  return (
+    <div className="Payment">
+      <div className="Payment-content">
+        <h3>Resumend del pedido:</h3>
+        { cart.map((item) => (
+          <div className="Payment-item" key={item.title}>
+            <div className="Payment-element">
+              <h4>{item.title}</h4>
+              <span>
+                $
+                {' '}
+                {item.price}
+              </span>
+            </div>
+          </div>
+        )) }
+        <div className="Payment-button">
+          <PayPalButton 
+            paypalOptions={paypalOptions}
+            buttonStyles={buttonStyles} 
+            amount={handleSumTotal(cart)}
+            onPaymentStart={() => console.log('Start payment')}
+            onPaymentSuccess={data => handlePaymentSuccess(data)}
+            onPaymentError={error => console.log(error)}
+            onPaymentCancel={data => console.log(data)}
+          />
+        </div>
+      </div>
+      <div>
+        Sidebard
+      </div>
+    </div>
+  )
+}
+
+export default Payment
