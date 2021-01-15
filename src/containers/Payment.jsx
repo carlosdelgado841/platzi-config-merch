@@ -14,7 +14,8 @@ function Payment() {
   } = useContext(AppContext);
 
   const paypalOptions = {
-   
+    clientId:
+      "AQqvVshzgU08gSXjCsJ4ELUO76r7vvyHiDdyNZbh8rl8J2lYX3NeI8aRQJYobiZ4XKdlFMnvt-rPfqTy",
     intent: "capture",
     currency: "USD",
   };
