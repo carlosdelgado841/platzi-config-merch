@@ -1,16 +1,16 @@
-import React from 'react'
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import React from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-import Home from '../containers/Home'
-import Checkout from '../containers/Checkout'
-import Information from '../containers/Information'
-import Payment from '../containers/Payment'
-import Success from '../containers/Success'
-import NotFound from '../containers/NotFound'
-import Layout from '../components/Layout'
+import Home from "../containers/Home";
+import Checkout from "../containers/Checkout";
+import Information from "../containers/Information";
+import Payment from "../containers/Payment";
+import Success from "../containers/Success";
+import NotFound from "../containers/NotFound";
+import Layout from "../components/Layout";
 
-import AppContext from '../context/AppContext'
-import useInitialState from '../hooks/useInitialState'
+import AppContext from "../context/AppContext";
+import useInitialState from "../hooks/useInitialState";
 
 export default function App() {
   const initialState = useInitialState();
@@ -23,11 +23,11 @@ export default function App() {
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/checkout/information" component={Information} />
             <Route exact path="/checkout/payment" component={Payment} />
-            <Route exact path="/checkout/success" component={Success} />          
+            <Route exact path="/checkout/success" component={Success} />
             <Route component={NotFound} />
           </Switch>
-        </Layout>        
+        </Layout>
       </BrowserRouter>
     </AppContext.Provider>
-  )
+  );
 }

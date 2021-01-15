@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Product({ product, handleAddToCart }) {
   return (
@@ -6,18 +6,16 @@ function Product({ product, handleAddToCart }) {
       <img src={product.image} alt={product.title} />
       <div className="Product-item-info">
         <h2>
-          {product.title} 
-          <span>
-            $ 
-            {' '}
-            {product.price}
-          </span>
+          {product.title}
+          <span>$ {product.price}</span>
         </h2>
         <p>{product.description}</p>
       </div>
-      <button type="button" onClick={handleAddToCart(product)}>Comprar</button>
+      <button type="button" onClick={handleAddToCart(product)}>
+        Comprar
+      </button>
     </div>
-  )
+  );
 }
 
-export default Product
+export default Product;
