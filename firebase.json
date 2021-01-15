@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "platzi-conf-merch-cd",
     "public": "dist",
     "ignore": [
       "firebase.json",
